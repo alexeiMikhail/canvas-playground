@@ -28,6 +28,19 @@ buttons.bubble.addEventListener("click", () => {
     bubbles(1);
 })
 
+addEventListener("mousedown", (e)=>{
+    for (let i = 0; i < bubbleArray.length; i++) {
+        var bubble = bubbleArray[i];
+        var distance = Math.sqrt(
+            Math.pow((e.clientX - bubble.x), 2) + 
+            Math.pow((e.clientY - bubble.y), 2));
+        if (distance < bubble.radius){
+            bubbleArray.splice(i, 1)
+        }
+    };
+    console.log("Clicked mouse.")
+})
+
 
 
 ///////////////////////////
@@ -74,7 +87,7 @@ function drawCircle(x, y, radius) {
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2 * Math.PI);
     ctx.stroke();
-    console.log("Drew a circle.");
+    //console.log("Drew a circle.");
 }
 
 function animateBubbles() {
@@ -93,7 +106,7 @@ function animateBubbles() {
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    console.log("Canvas cleared.")
+    //console.log("Canvas cleared.")
 }
 
 function stepBubbles() {
@@ -109,10 +122,10 @@ function stepBubbles() {
 function bounceCheck(bubble) {
     if (bubble.x < 0 + bubble.radius || bubble.x > canvas.width - bubble.radius) {
         bubble.velocity.x *= -1;
-        console.log("Bounce x.")
+        //console.log("Bounce x.")
     }
     if (bubble.y < 0 + bubble.radius || bubble.y > canvas.width - bubble.radius) {
         bubble.velocity.y *= -1;
-        console.log("Bounce y.")
+        //console.log("Bounce y.")
     }
 }
