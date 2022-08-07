@@ -41,14 +41,18 @@ addEventListener("mousedown", (e)=>{
     console.log("Clicked mouse.")
 })
 
+main();
 
 
 ///////////////////////////
 
+function main() {
+    animateBubbles();
+}
+
 function bubbles(n) {
     console.log("Main bubble function called.")
     initiateBubbles(n);
-    animateBubbles();
     console.log("End of main bubble function.")
 }
 
