@@ -128,7 +128,7 @@ function bounceCheck(bubble) {
         bubble.velocity.x *= -1;
         //console.log("Bounce x.")
     }
-    if (bubble.y < 0 + bubble.radius || bubble.y > canvas.width - bubble.radius) {
+    if (bubble.y < 0 + bubble.radius || bubble.y > canvas.height - bubble.radius) {
         bubble.velocity.y *= -1;
         //console.log("Bounce y.")
     }
