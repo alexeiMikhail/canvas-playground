@@ -1,9 +1,6 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var bubbleArray = [];
-var buttons = {
-    bubble: document.getElementById("bubble-btn"),
-}
 
 const resize = () => {
     canvas.width = window.innerWidth;
@@ -23,11 +20,6 @@ function fullscreen() {
     }
 }
 
-buttons.bubble.addEventListener("click", () => {
-    console.log("Clicked Bubble")
-    bubbles(1);
-})
-
 addEventListener("mousedown", (e)=>{
     for (let i = 0; i < bubbleArray.length; i++) {
         var bubble = bubbleArray[i];
@@ -36,8 +28,10 @@ addEventListener("mousedown", (e)=>{
             Math.pow((e.clientY - bubble.y), 2));
         if (distance < bubble.radius){
             bubbleArray.splice(i, 1)
-        }
+            return
+        } 
     };
+    initiateBubbles(e.clientX, e.clientY);
     console.log("Clicked mouse.")
 })
 
@@ -56,22 +50,19 @@ function bubbles(n) {
     console.log("End of main bubble function.")
 }
 
-function initiateBubbles(n) {
+function initiateBubbles(x, y) {
     var i = 0;
 
-    while (i < n) {
-        var radius = Math.random() * 100;
-        var x = randBetween(radius * 1.2, canvas.width - radius * 1.2);
-        var y = randBetween(radius * 1.2, canvas.height - radius * 1.2);
-        var velocity = {
-            x: (Math.random() - .5) * 8,
-            y: (Math.random() - .5) * 8,
-        }
-        newBubble(x, y, radius, velocity);
-        drawCircle(x, y, radius);
-        console.log("Bubble initiated: " + bubbleArray[i]);
-        i++;
+    var radius = Math.random() * 100;
+    var velocity = {
+        x: (Math.random() - .5) * 8,
+        y: (Math.random() - .5) * 8,
     }
+    newBubble(x, y, radius, velocity);
+    drawCircle(x, y, radius);
+    console.log("Bubble initiated: " + bubbleArray[i]);
+    i++;
+    
     console.log("Initiated " + n + " bubbles. Array size: " + bubbleArray.length)
 }
 

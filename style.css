@@ -3,9 +3,9 @@ body {
     overflow: hidden;
 }
 
-button {
+p {
     position:absolute;
-    top: 5%;
-    left: 5%;
+    top: 50%;
+    left: 50%;
     font-size: 36px;
 }
